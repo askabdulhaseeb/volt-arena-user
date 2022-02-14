@@ -1,16 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:volt_arena/consts/my_icons.dart';
-import 'package:volt_arena/screens/adminScreens/allUsers.dart';
-import 'package:volt_arena/screens/adminScreens/chatLists.dart';
-import 'package:volt_arena/screens/adminScreens/upload_product_form.dart';
-import 'package:volt_arena/screens/calender.dart';
 import 'package:volt_arena/screens/search.dart';
-import 'package:flutter/material.dart';
 import 'package:volt_arena/widget/tools/custom_drawer.dart';
 import 'provider/bottom_navigation_bar_provider.dart';
 import 'screens/servicesScreen.dart';
 
 class BottomBarScreen extends StatefulWidget {
+  const BottomBarScreen({Key? key}) : super(key: key);
   static const routeName = '/BottomBarScreen';
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
@@ -45,8 +42,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           unselectedItemColor: Colors.grey.shade700,
           selectedItemColor: Colors.black,
           currentIndex: _page.selectedPage,
-          items: [
-            BottomNavigationBarItem(
+          items: <BottomNavigationBarItem>[
+            const BottomNavigationBarItem(
               icon: Icon(Icons.room_service),
               label: 'Services',
             ),
@@ -54,40 +51,14 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               icon: Icon(MyAppIcons.search),
               label: 'Search',
             ),
-
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.shopping_cart_rounded),
-            //   label: 'BOOKINGS',
-            // ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.calendar_today),
-            //   label: 'All Bookings',
-            // ),
-            // // BottomNavigationBarItem(icon: Icon(MyAppIcons.user), label: 'User'),
-
-            // // admin screen
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.people),
-            //   label: 'All Users',
-            // ),
-
-            // // admin screen
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.chat_bubble),
-            //   label: 'Admin Chats',
-            // ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.upload),
-            //   label: 'Upload Product',
-            // ),
           ],
         ),
       ),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 
-  List<IconData> _userTileIcons = [
+  final List<IconData> _userTileIcons = <IconData>[
     Icons.email,
     Icons.phone,
     Icons.local_shipping,
