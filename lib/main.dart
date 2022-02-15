@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return MaterialApp(
+            return const MaterialApp(
               debugShowCheckedModeBanner: false,
               home: Scaffold(
                 body: Center(
@@ -101,7 +101,7 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           } else if (snapshot.hasError) {
-            MaterialApp(
+            const MaterialApp(
               debugShowCheckedModeBanner: false,
               home: Scaffold(
                 body: Center(
@@ -132,7 +132,7 @@ class _MyAppState extends State<MyApp> {
                 brightness: Brightness.dark,
                 dividerTheme: const DividerThemeData(
                     color: Colors.orange, thickness: 0.5),
-                textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white))
+                textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white))
                     .apply(bodyColor: Colors.white, displayColor: Colors.white),
                 colorScheme: const ColorScheme.dark(
                   primary: Colors.orange,
@@ -150,12 +150,12 @@ class _MyAppState extends State<MyApp> {
                 WishlistScreen.routeName: (ctx) => WishlistScreen(),
                 MainScreens.routeName: (ctx) => MainScreens(),
                 ServiceDetailsScreen.routeName: (ctx) => ServiceDetailsScreen(),
-                LoginScreen.routeName: (ctx) => LoginScreen(),
-                SignupScreen.routeName: (ctx) => SignupScreen(),
-                BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
+                LoginScreen.routeName: (ctx) => const LoginScreen(),
+                SignupScreen.routeName: (ctx) => const SignupScreen(),
+                BottomBarScreen.routeName: (ctx) => const BottomBarScreen(),
                 UploadProductForm.routeName: (ctx) => UploadProductForm(),
                 ForgetPassword.routeName: (ctx) => ForgetPassword(),
-                LandingScreen.routeName: (ctx) => LandingScreen(),
+                LandingScreen.routeName: (ctx) => const LandingScreen(),
                 OrderScreen.routeName: (ctx) => OrderScreen(),
               },
             ),

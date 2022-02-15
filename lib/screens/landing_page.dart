@@ -50,19 +50,18 @@ class _LandingScreenState extends State<LandingScreen> {
             ),
           ),
           const Spacer(),
-          _loginButton(context), SizedBox(),
-          _googleSignup(context),
+          _loginButton(context),
           const SizedBox(height: 12),
-          // Column(
-          //   children: [
-          //     _googleSignup(context),
-          //     const SizedBox(height: 12),
-          //     _guestUserButton(context),
-          //     const SizedBox(height: 30),
-          //     _signupLine(),
-          //     const SizedBox(height: 16),
-          //   ],
-          // ),
+          Column(
+            children: [
+              _googleSignup(context),
+              const SizedBox(height: 12),
+              _guestUserButton(context),
+              const SizedBox(height: 30),
+              _signupLine(),
+              const SizedBox(height: 16),
+            ],
+          ),
         ],
       ),
     );

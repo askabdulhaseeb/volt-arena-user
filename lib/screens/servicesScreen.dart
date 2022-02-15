@@ -13,7 +13,9 @@ import '../consts/my_icons.dart';
 import '../models/product.dart';
 
 class ServicesScreen extends StatefulWidget {
+  const ServicesScreen({Key? key}) : super(key: key);
   static const routeName = '/Feeds';
+
   @override
   _ServicesScreenState createState() => _ServicesScreenState();
 }
@@ -45,11 +47,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
     }
     return SafeArea(
       child: Scaffold(
-        drawer: CustomDrawer(),
+        drawer: const CustomDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text('Services'),
+          title: const Text('Services'),
           centerTitle: true,
           // leading: IconButton(
           //   icon: Icon(Icons.dehaze_outlined),
@@ -64,7 +66,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 position: BadgePosition.topEnd(top: 5, end: 7),
                 badgeContent: Text(
                   favs.getFavsItems.length.toString(),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 child: IconButton(
                   icon: Icon(
@@ -85,7 +87,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 position: BadgePosition.topEnd(top: 5, end: 7),
                 badgeContent: Text(
                   cart.getCartItems.length.toString(),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 child: IconButton(
                   icon: Icon(

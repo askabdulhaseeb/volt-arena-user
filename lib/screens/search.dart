@@ -9,6 +9,7 @@ import 'package:volt_arena/widget/service_tile_widget.dart';
 import 'package:volt_arena/widget/tools/empty_iconic_widget.dart';
 
 class Search extends StatefulWidget {
+  const Search({Key? key}) : super(key: key);
   @override
   _SearchState createState() => _SearchState();
 }
@@ -16,6 +17,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   TextEditingController? _searchTextController;
   final FocusNode _node = FocusNode();
+  @override
   void initState() {
     super.initState();
     _searchTextController = TextEditingController();
@@ -48,12 +50,12 @@ class _SearchState extends State<Search> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
                 ),
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.search,
                 ),
                 hintText: 'Search',
@@ -80,11 +82,11 @@ class _SearchState extends State<Search> {
               },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           _searchTextController!.text.isNotEmpty && _searchList.isEmpty
-              ? EmptyIconicWidget(
+              ? const EmptyIconicWidget(
                   icon: Icons.error_outline,
                   title: 'No service found!!!',
                   subtitle: 'You can checkout all service',

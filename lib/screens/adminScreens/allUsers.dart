@@ -113,134 +113,110 @@ class _UserNSearchState extends State<UserNSearch>
   }
 
   buildAllUsers() {
-    return Stack(
-      children: [
-        StreamBuilder<QuerySnapshot>(
-            stream: userRef.snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return LoadingIndicator();
-              }
-              List<UserResult> userResults = [];
-              List<UserResult> allAdmins = [];
+    return StreamBuilder<QuerySnapshot>(
+        stream: userRef.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return LoadingIndicator();
+          }
+          List<UserResult> userResults = [];
+          List<UserResult> allAdmins = [];
 
-              snapshot.data!.docs.forEach((doc) {
-                AppUserModel user = AppUserModel.fromDocument(doc);
+          snapshot.data!.docs.forEach((doc) {
+            AppUserModel user = AppUserModel.fromDocument(doc);
 
-                //remove auth user from recommended list
-                if (user.isAdmin!) {
-                  UserResult adminResult = UserResult(user);
-                  allAdmins.add(adminResult);
-                } else {
-                  UserResult userResult = UserResult(user);
-                  userResults.add(userResult);
-                }
-              });
-              return ListView(
-                physics: BouncingScrollPhysics(),
-                children: <Widget>[
-                  // currentUser!.isAdmin!
-                  // ?
-                  Container(
-                    height: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
+            //remove auth user from recommended list
+            if (user.isAdmin!) {
+              UserResult adminResult = UserResult(user);
+              allAdmins.add(adminResult);
+            } else {
+              UserResult userResult = UserResult(user);
+              userResults.add(userResult);
+            }
+          });
+          return ListView(
+            physics: const BouncingScrollPhysics(),
+            children: <Widget>[
+              // currentUser!.isAdmin!
+              // ?
+              Container(
+                height: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      typeSelected = "users";
-                                    });
-                                  },
-                                  child: GlassContainer(
-                                    opacity: 0.7,
-                                    shadowStrength: 8,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "All Users ${userResults.length}",
-                                        style: TextStyle(fontSize: 20.0),
-                                      ),
-                                    ),
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  typeSelected = "users";
+                                });
+                              },
+                              child: GlassContainer(
+                                opacity: 0.7,
+                                shadowStrength: 8,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "All Users ${userResults.length}",
+                                    style: const TextStyle(fontSize: 20.0),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      typeSelected = "admin";
-                                    });
-                                  },
-                                  child: GlassContainer(
-                                    opacity: 0.7,
-                                    shadowStrength: 8,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "All Admins ${allAdmins.length}",
-                                        style: TextStyle(fontSize: 20.0),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  typeSelected = "admin";
+                                });
+                              },
+                              child: GlassContainer(
+                                opacity: 0.7,
+                                shadowStrength: 8,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "All Admins ${allAdmins.length}",
+                                    style: const TextStyle(fontSize: 20.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  // : Container(),
-                  typeSelected == 'admin'
-                      ? Column(
-                          children: allAdmins,
-                        )
-                      : Text(""),
-                  typeSelected == 'users'
-                      ? Column(
-                          children: userResults,
-                        )
-                      : Text(''),
-                ],
-              );
-            }),
-        Positioned(
-            left: 20,
-            bottom: 20,
-            child: GestureDetector(
-              onTap: () {
-                AuthenticationService().signOut();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => LandingScreen(),
-                ));
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.red,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("LogOut"),
-                  )),
-            ))
-      ],
-    );
+                ),
+              ),
+              // : Container(),
+              typeSelected == 'admin'
+                  ? Column(
+                      children: allAdmins,
+                    )
+                  : const Text(""),
+              typeSelected == 'users'
+                  ? Column(
+                      children: userResults,
+                    )
+                  : const Text(''),
+            ],
+          );
+        });
   }
 }
 
@@ -269,13 +245,13 @@ class UserResult extends StatelessWidget {
                 opacity: 0.6,
                 shadowStrength: 8,
                 child: ListTile(
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     backgroundColor: Colors.grey,
-                    child: Icon(Icons.person),
+                    child: const Icon(Icons.person),
                   ),
                   title: Text(
                     user.name.toString(),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     user.name.toString(),
@@ -304,7 +280,7 @@ class UserResult extends StatelessWidget {
                         Navigator.pop(context);
                         makeAdminFunc("Rank changed to User");
                       },
-                      child: Text(
+                      child: const Text(
                         'Make User',
                       ),
                     )
@@ -313,7 +289,7 @@ class UserResult extends StatelessWidget {
                         Navigator.pop(context);
                         makeAdminFunc("Upgraded to Admin");
                       },
-                      child: Text(
+                      child: const Text(
                         'Make Admin',
                       ),
                     ),
@@ -322,14 +298,14 @@ class UserResult extends StatelessWidget {
                   Navigator.pop(context);
                   deleteUser(user.email!, user.password!);
                 },
-                child: Text(
+                child: const Text(
                   'Delete User',
                   style: TextStyle(color: Colors.red),
                 ),
               ),
               SimpleDialogOption(
                 onPressed: () => Navigator.pop(context),
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               )
             ],
           );
