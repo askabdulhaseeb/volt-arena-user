@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:volt_arena/consts/my_icons.dart';
+import 'package:volt_arena/messages_screens/message_page.dart';
 import 'package:volt_arena/screens/search.dart';
 import 'package:volt_arena/screens/search_person/search_person.dart';
 import 'package:volt_arena/widget/tools/custom_drawer.dart';
@@ -16,8 +17,8 @@ class BottomBarScreen extends StatefulWidget {
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
   final List<Widget> pages = const <Widget>[
-     ServicesScreen(),
-     Search(),
+    ServicesScreen(),
+    Search(),
     SearchPerson(),
   ];
 
@@ -56,7 +57,9 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
       ),
       drawer: const CustomDrawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(MessageScreen.routeName);
+        },
         child: const Icon(Icons.chat, color: Colors.white),
       ),
     );

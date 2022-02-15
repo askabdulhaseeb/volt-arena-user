@@ -7,8 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:volt_arena/bottom_bar.dart';
 import 'package:volt_arena/cart/cart.dart';
 import 'package:volt_arena/database/user_local_data.dart';
+import 'package:volt_arena/messages_screens/message_page.dart';
 import 'package:volt_arena/provider/bottom_navigation_bar_provider.dart';
 import 'package:volt_arena/provider/dark_theme_provider.dart';
+import 'package:volt_arena/provider/message_page_provider.dart';
 import 'package:volt_arena/provider/users_provider.dart';
 import 'package:volt_arena/screens/landing_page.dart';
 import 'package:volt_arena/screens/orders/order.dart';
@@ -117,6 +119,9 @@ class _MyAppState extends State<MyApp> {
               ChangeNotifierProvider<BottomNavigationBarProvider>.value(
                 value: BottomNavigationBarProvider(),
               ),
+              ChangeNotifierProvider<MessagePageProvider>.value(
+                value: MessagePageProvider(),
+              ),
               ChangeNotifierProvider<CartProvider>.value(value: CartProvider()),
               ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
               ChangeNotifierProvider<FavsProvider>.value(value: FavsProvider()),
@@ -134,7 +139,8 @@ class _MyAppState extends State<MyApp> {
                 brightness: Brightness.dark,
                 dividerTheme: const DividerThemeData(
                     color: Colors.orange, thickness: 0.5),
-                textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white))
+                textTheme: const TextTheme(
+                        bodyText1: TextStyle(color: Colors.white))
                     .apply(bodyColor: Colors.white, displayColor: Colors.white),
                 colorScheme: const ColorScheme.dark(
                   primary: Colors.orange,
@@ -148,9 +154,9 @@ class _MyAppState extends State<MyApp> {
                 //     WebhookPaymentScreen(),
                 MyBookingsScreen.routeName: (ctx) => MyBookingsScreen(),
                 CalenderScreen.routeName: (ctx) => CalenderScreen(),
-                ServicesScreen.routeName: (ctx) => ServicesScreen(),
+                ServicesScreen.routeName: (ctx) => const ServicesScreen(),
                 WishlistScreen.routeName: (ctx) => WishlistScreen(),
-                MainScreens.routeName: (ctx) => MainScreens(),
+                MainScreens.routeName: (ctx) => const MainScreens(),
                 ServiceDetailsScreen.routeName: (ctx) => ServiceDetailsScreen(),
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 SignupScreen.routeName: (ctx) => const SignupScreen(),
@@ -159,6 +165,7 @@ class _MyAppState extends State<MyApp> {
                 ForgetPassword.routeName: (ctx) => ForgetPassword(),
                 LandingScreen.routeName: (ctx) => const LandingScreen(),
                 OrderScreen.routeName: (ctx) => OrderScreen(),
+                MessageScreen.routeName: (_) => const MessageScreen(),
               },
             ),
             //   },

@@ -23,7 +23,7 @@ class UserAPI {
     return _users;
   }
 
-  Future<DocumentSnapshot<Map<String, dynamic>>> getInfo(
+  Future<AppUserModel> getInfo(
       {required String uid}) async {
     var docs = await _instance.collection(_collection).doc(uid).get();
     final AppUserModel appUser = AppUserModel.fromDocument(docs);
@@ -33,7 +33,7 @@ class UserAPI {
         'phoneNo': 'Not Added',
       });
     }
-    return _instance.collection(_collection).doc(uid).get();
+    return appUser;
   }
 
   Future<bool> addUser(AppUserModel appUser) async {

@@ -10,9 +10,11 @@ import 'user_local_data.dart';
 class AuthMethod {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<User?> getCurrentUser() async {
+  static Future<User?> getCurrentUser() async {
     return _auth.currentUser;
   }
+
+  static String get uid => _auth.currentUser?.uid ?? '';
 
   Future<bool> loginAnonymosly() async {
     try {
@@ -143,10 +145,8 @@ class AuthMethod {
         CustomToast.errorToast(message: obj.toString());
       });
       final User? user = result.user;
-      final DocumentSnapshot<Map<String, dynamic>> docs =
-          await UserAPI().getInfo(uid: user!.uid);
 
-      final AppUserModel appUser = AppUserModel.fromDocument(docs);
+      final AppUserModel appUser = await UserAPI().getInfo(uid: user!.uid);
 
       currentUser = appUser;
       UserLocalData().storeAppUserData(appUser: appUser);

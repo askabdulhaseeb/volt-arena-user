@@ -3,6 +3,9 @@ import 'package:volt_arena/database/user_local_data.dart';
 import 'package:volt_arena/models/users.dart';
 import 'package:volt_arena/utilities/custom_images.dart';
 
+import '../../database/chat_api.dart';
+import '../../messages_screens/personal/personal_chat_screen.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({required this.user, Key? key}) : super(key: key);
   static const String routeName = '/ProfileScreen';
@@ -11,6 +14,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Profile'),
@@ -50,7 +54,18 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                final String _chatID =
+                    ChatAPI.getChatID(othersUID: user.id ?? '');
+                Navigator.of(context).push(
+                  MaterialPageRoute<PersonalChatScreen>(
+                    builder: (BuildContext context) => PersonalChatScreen(
+                      otherUser: user,
+                      chatID: _chatID,
+                    ),
+                  ),
+                );
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 alignment: Alignment.center,

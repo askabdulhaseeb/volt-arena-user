@@ -49,6 +49,7 @@ dependencies:
   share: null
   intl_phone_number_input: ^0.7.0+2
   flutter_paystack:
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
