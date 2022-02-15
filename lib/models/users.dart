@@ -16,18 +16,19 @@ class AppUserModel {
   final bool? isGuest;
 
   // final Map? sectionsAppointed;
-  AppUserModel(
-      {this.id,
-      this.name,
-      this.phoneNo,
-      this.password,
-      this.createdAt,
-      this.isAdmin,
-      this.email,
-      this.joinedAt,
-      this.isGuest,
-      this.imageUrl,
-      this.androidNotificationToken});
+  AppUserModel({
+    this.id,
+    this.name,
+    this.phoneNo,
+    this.password,
+    this.createdAt,
+    this.isAdmin,
+    this.email,
+    this.joinedAt,
+    this.isGuest,
+    this.imageUrl,
+    this.androidNotificationToken,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -73,6 +74,18 @@ class AppUserModel {
       phoneNo: doc.data()["phoneNo"],
       joinedAt: doc.data()["joinedAt"],
       androidNotificationToken: doc.data()["androidNotificationToken"],
+    );
+  }
+  factory AppUserModel.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
+    return AppUserModel(
+      id: doc.data()?["id"] ?? '',
+      name: doc.data()?["name"] ?? '',
+      createdAt: doc.data()?["createdAt"],
+      email: doc.data()?["email"] ?? '',
+      imageUrl: doc.data()?["imageUrl"] ?? '',
+      isGuest: doc.data()?["isGuest"] ?? false,
+      phoneNo: doc.data()?["phoneNo"] ?? '',
+      joinedAt: doc.data()?["joinedAt"],
     );
   }
 

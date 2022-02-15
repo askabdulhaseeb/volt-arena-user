@@ -9,6 +9,7 @@ import 'package:volt_arena/cart/cart.dart';
 import 'package:volt_arena/database/user_local_data.dart';
 import 'package:volt_arena/provider/bottom_navigation_bar_provider.dart';
 import 'package:volt_arena/provider/dark_theme_provider.dart';
+import 'package:volt_arena/provider/users_provider.dart';
 import 'package:volt_arena/screens/landing_page.dart';
 import 'package:volt_arena/screens/orders/order.dart';
 import 'package:volt_arena/screens/servicesScreen.dart';
@@ -117,6 +118,7 @@ class _MyAppState extends State<MyApp> {
                 value: BottomNavigationBarProvider(),
               ),
               ChangeNotifierProvider<CartProvider>.value(value: CartProvider()),
+              ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
               ChangeNotifierProvider<FavsProvider>.value(value: FavsProvider()),
               ChangeNotifierProvider<OrdersProvider>.value(
                   value: OrdersProvider()),

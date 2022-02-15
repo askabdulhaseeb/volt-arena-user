@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:volt_arena/consts/my_icons.dart';
-import 'package:volt_arena/screens/profile_screen/profile_screen.dart';
 import 'package:volt_arena/screens/search.dart';
+import 'package:volt_arena/screens/search_person/search_person.dart';
 import 'package:volt_arena/widget/tools/custom_drawer.dart';
 import 'provider/bottom_navigation_bar_provider.dart';
 import 'screens/servicesScreen.dart';
@@ -16,9 +16,9 @@ class BottomBarScreen extends StatefulWidget {
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
   final List<Widget> pages = const <Widget>[
-    ServicesScreen(),
-    Search(),
-    ProfileScreen(),
+     ServicesScreen(),
+     Search(),
+    SearchPerson(),
   ];
 
   @override
@@ -48,8 +48,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               label: 'Search',
             ),
             const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: 'Profile',
+              icon: Icon(Icons.person_search_outlined),
+              label: 'Persons',
             ),
           ],
         ),
