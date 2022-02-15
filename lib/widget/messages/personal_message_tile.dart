@@ -42,33 +42,35 @@ class PersonalMessageTile extends StatelessWidget {
                     : Colors.grey.shade300,
               ),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    width: boxWidth,
-                    child: Text(
+              child: SizedBox(
+                width: boxWidth,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const SizedBox(height: 4),
+                    Text(
                       message.message,
+                      textAlign: TextAlign.left,
                       style: TextStyle(
                         color: (isMe) ? Colors.white : Colors.black,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        Utilities.timeInDigits(message.timestamp),
-                        style: TextStyle(
-                          color: (isMe) ? Colors.white70 : Colors.black54,
-                          fontSize: 12,
+                    const SizedBox(height: 2),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text(
+                          Utilities.timeInDigits(message.timestamp),
+                          style: TextStyle(
+                            color: (isMe) ? Colors.white70 : Colors.black54,
+                            fontSize: 12,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

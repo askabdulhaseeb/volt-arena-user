@@ -30,6 +30,5 @@ class UserProvider extends ChangeNotifier {
   void addUsers(List<AppUserModel> data) {
     _users = data;
     _users.removeWhere((element) => element.id == UserLocalData.getUserUID);
-    notifyListeners();
   }
 }

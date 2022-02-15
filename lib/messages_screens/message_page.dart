@@ -15,7 +15,7 @@ class MessageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Messenger',
+          'Messages',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Theme.of(context).primaryColor,
