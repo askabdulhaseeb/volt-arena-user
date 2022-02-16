@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:volt_arena/widget/tools/circular_profile_image.dart';
 import '../../../../../database/auth_methods.dart';
 import '../../../../../database/group_chat_api.dart';
@@ -8,13 +9,13 @@ import '../../../../../models/group_chat.dart';
 import '../../../../../models/message.dart';
 import '../../../../../utilities/utilities.dart';
 import '../../database/user_local_data.dart';
+import '../../provider/group_chat_provider.dart';
 import '../../widget/messages/chat_textformfield.dart';
 import '../../widget/messages/personal_message_tile.dart';
 import 'group_info_screen.dart';
 
 class GroupChatScreen extends StatefulWidget {
-  const GroupChatScreen({required this.group, Key? key}) : super(key: key);
-  final GroupChat group;
+  const GroupChatScreen({Key? key}) : super(key: key);
   @override
   State<GroupChatScreen> createState() => _GroupChatScreenState();
 }
@@ -24,8 +25,9 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
+    GroupChatProvider _provider = Provider.of<GroupChatProvider>(context);
     return Scaffold(
-      appBar: _appBar(),
+      appBar: _appBar(_provider.groupChat!),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Utilities.padding),
         child: Column(
@@ -34,7 +36,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
               child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
                     .collection('chat_groups')
-                    .doc(widget.group.groupID)
+                    .doc(_provider.groupChat!.groupID)
                     .collection('messages')
                     .orderBy('timestamp', descending: true)
                     .snapshots(),
@@ -67,7 +69,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                       ),
                                     ),
                                     Text(
-                                      'and start conversation',
+                                      'and start conversation with Group Members',
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
@@ -78,18 +80,19 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                 reverse: true,
                                 itemCount: _messages.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return Material(
-                                    child: SizedBox(
-                                      child: PersonalMessageTile(
-                                        boxWidth: _size.width * 0.65,
-                                        message: _messages[index],
-                                        displayName: (_messages[index].sendBy ==
-                                                AuthMethod.uid)
-                                            ? UserLocalData.getUserDisplayName
-                                            : 'Sender Name',
-                                      ),
-                                    ),
-                                  );
+                                  return Consumer<GroupChatProvider>(
+                                      builder: (_, persons, __) =>
+                                          PersonalMessageTile(
+                                            boxWidth: _size.width * 0.65,
+                                            message: _messages[index],
+                                            displayName: persons
+                                                    .userInfo(
+                                                        uid: _messages[index]
+                                                                .sendBy ??
+                                                            AuthMethod.uid)
+                                                    .name ??
+                                                '',
+                                          ));
                                 },
                               );
                       } else {
@@ -113,11 +116,11 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 controller: _text,
                 onSendPressed: () async {
                   int _time = DateTime.now().microsecondsSinceEpoch;
-                  widget.group.lastMessage = _text.text;
-                  widget.group.timestamp = _time;
-                  widget.group.type = MessageTypeEnum.TEXT;
+                  _provider.groupChat!.lastMessage = _text.text;
+                  _provider.groupChat!.timestamp = _time;
+                  _provider.groupChat!.type = MessageTypeEnum.TEXT;
                   await GroupChatAPI().sendMessage(
-                    group: widget.group,
+                    group: _provider.groupChat!,
                     messages: Message(
                       messageID: _time.toString(),
                       message: _text.text.trim(),
@@ -133,25 +136,28 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(GroupChat group) {
     return AppBar(
       titleSpacing: 0,
       title: GestureDetector(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute<GroupInfoScreen>(
-          //   builder: (_) => GroupInfoScreen(group: widget.group),
-          // ));
+          Navigator.of(context).push(MaterialPageRoute<GroupInfoScreen>(
+            builder: (_) =>const GroupInfoScreen(),
+          ));
         },
         child: Row(
           children: <Widget>[
-            CircularProfileImage(imageURL: widget.group.imageURL ?? ''),
+            CircularProfileImage(
+              imageURL: group.imageURL ?? '',
+              radious: 24,
+            ),
             const SizedBox(width: 8),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    widget.group.name ?? 'issue',
+                    group.name ?? 'issue',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -169,20 +175,6 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           ],
         ),
       ),
-      actions: <Widget>[
-        IconButton(
-          splashRadius: 16,
-          padding: const EdgeInsets.all(0),
-          icon: const Icon(Icons.video_call),
-          onPressed: () {},
-        ),
-        IconButton(
-          splashRadius: 16,
-          padding: const EdgeInsets.all(0),
-          icon: const Icon(Icons.call),
-          onPressed: () {},
-        ),
-      ],
     );
   }
 }

@@ -5,12 +5,14 @@ import '../../utilities/utilities.dart';
 
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
-    required this.title,
+    this.title,
     required TextEditingController controller,
     this.keyboardType = TextInputType.text,
     this.validator,
     this.initialValue,
     this.hint,
+    this.minLines = 1,
+    this.maxLines = 1,
     this.readOnly = false,
     this.autoFocus = false,
     this.textAlign = TextAlign.start,
@@ -21,8 +23,10 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final String? initialValue;
-  final String title;
+  final String? title;
   final String? hint;
+  final int? minLines;
+  final int? maxLines;
   final bool readOnly;
   final bool autoFocus;
   final TextAlign textAlign;
@@ -54,6 +58,8 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
         readOnly: widget.readOnly,
         keyboardType: widget.keyboardType,
         autofocus: widget.autoFocus,
+        minLines: widget.minLines,
+        maxLines: (widget._controller.text.isEmpty) ? 1 : widget.maxLines,
         textAlign: widget.textAlign,
         validator: (String? value) => widget.validator!(value),
         cursorColor: Theme.of(context).colorScheme.secondary,

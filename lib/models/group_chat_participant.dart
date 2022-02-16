@@ -10,7 +10,7 @@ class GroupChatParticipant {
     this.isMute = false,
     this.invitationAccepted = true,
   });
-  final AppUserModel user;
+  final String user;
   final GroupParticipantRoleTypeEnum role;
   final String addedBy;
   final bool isMute;
@@ -18,7 +18,7 @@ class GroupChatParticipant {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'user': user.id,
+      'user': user,
       'role': GroupParticipantRoleTypeConverter.formEnum(role),
       'isMute': isMute,
       'invitation_accepted': invitationAccepted,
@@ -29,10 +29,11 @@ class GroupChatParticipant {
   // ignore: sort_constructors_first
   factory GroupChatParticipant.fromMap(Map<String, dynamic> map) {
     return GroupChatParticipant(
-      user: AppUserModel.fromMap(map['user']),
-      role: GroupParticipantRoleTypeConverter.fromString(map['role']),
-      isMute: map['isMute'],
-      invitationAccepted: map['invitation_accepted'],
+      user: map['user'],
+      role:
+          GroupParticipantRoleTypeConverter.fromString(map['role'] ?? 'MEMBER'),
+      isMute: map['isMute'] ?? false,
+      invitationAccepted: map['invitation_accepted'] ?? true,
       addedBy: map['added_by'],
     );
   }

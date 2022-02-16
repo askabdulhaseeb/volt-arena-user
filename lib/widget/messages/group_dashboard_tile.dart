@@ -16,7 +16,7 @@ class GroupChatDashboardTile extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute<GroupChatScreen>(
-            builder: (_) => GroupChatScreen(group: group),
+            builder: (_) => const GroupChatScreen(),
           ),
         );
       },

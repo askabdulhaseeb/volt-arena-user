@@ -28,7 +28,7 @@ class GroupChatAPI {
   Future<List<GroupChat>> getGroups() async {
     List<GroupChat> _groups = <GroupChat>[];
     try {
-      final  Stream<QuerySnapshot<Map<String, dynamic>>> docs = _instance
+      final Stream<QuerySnapshot<Map<String, dynamic>>> docs = _instance
           .collection(_colloction)
           .orderBy('timestamp', descending: true)
           .where('participants', arrayContains: AuthMethod.uid)
@@ -62,6 +62,17 @@ class GroupChatAPI {
             .doc(group.groupID)
             .update(group.newMessage()),
       ]);
+    } catch (e) {
+      CustomToast.errorToast(message: e.toString());
+    }
+  }
+
+  Future<void> updateParticipent(GroupChat groupChat) async {
+    try {
+      await _instance
+          .collection(_colloction)
+          .doc(groupChat.groupID)
+          .update(groupChat.updateParticipant());
     } catch (e) {
       CustomToast.errorToast(message: e.toString());
     }

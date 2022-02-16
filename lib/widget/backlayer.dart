@@ -2,7 +2,8 @@ import 'package:volt_arena/cart/cart.dart';
 import 'package:volt_arena/consts/colors.dart';
 import 'package:volt_arena/consts/my_icons.dart';
 import 'package:flutter/material.dart';
-import '../screens/adminScreens/upload_product_form.dart';
+import 'package:volt_arena/screens/adminScreens/upload_product_form.dart';
+
 import '../screens/servicesScreen.dart';
 
 class BackLayerMenu extends StatelessWidget {

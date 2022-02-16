@@ -181,24 +181,6 @@ class _PersonalChatScreenState extends State<PersonalChatScreen> {
           ],
         ),
       ),
-      actions: <Widget>[
-        IconButton(
-          splashRadius: 16,
-          padding: const EdgeInsets.all(0),
-          icon: const Icon(Icons.video_call),
-          onPressed: () {},
-        ),
-        IconButton(
-          splashRadius: 16,
-          padding: const EdgeInsets.all(0),
-          icon: const Icon(Icons.call),
-          onPressed: () {},
-        ),
-      ],
     );
   }
 }
-
-//
-// Comp
-//

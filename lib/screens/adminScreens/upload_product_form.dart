@@ -12,8 +12,8 @@ import 'package:volt_arena/consts/colors.dart';
 import 'package:volt_arena/services/global_method.dart';
 
 class UploadProductForm extends StatefulWidget {
+ const UploadProductForm({Key? key}) : super(key: key);
   static const routeName = '/UploadProductForm';
-
   @override
   _UploadProductFormState createState() => _UploadProductFormState();
 }

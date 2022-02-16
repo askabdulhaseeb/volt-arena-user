@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:volt_arena/database/user_api.dart';
+import 'package:volt_arena/models/users.dart';
+import 'package:volt_arena/provider/group_chat_provider.dart';
+import 'package:volt_arena/widget/show_loading.dart';
 import '../../../../enums/messages/message_tabbar_enum.dart';
 import '../provider/message_page_provider.dart';
 import 'group/group_chat_dashboard.dart';
@@ -12,8 +16,10 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MessagePageProvider _page = Provider.of<MessagePageProvider>(context);
+    GroupChatProvider _chat = Provider.of<GroupChatProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: Text(
           'Messages',
           style: TextStyle(
@@ -22,15 +28,27 @@ class MessageScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          _TabBar(page: _page),
-          Expanded(
-              child: (_page.currentTab == MessageTabBarEnum.CHATS)
-                  ? const PersonalChatDashboard()
-                  : const GroupChatDashboaed()),
-        ],
-      ),
+      body: FutureBuilder<List<AppUserModel>>(
+          future: UserAPI().getAllUsers(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Center(child: Text('Facing some issues'));
+            }
+            if (snapshot.hasData) {
+              _chat.addUsers(snapshot.data ?? <AppUserModel>[]);
+              return Column(
+                children: <Widget>[
+                  _TabBar(page: _page),
+                  Expanded(
+                      child: (_page.currentTab == MessageTabBarEnum.CHATS)
+                          ? const PersonalChatDashboard()
+                          : const GroupChatDashboaed()),
+                ],
+              );
+            } else {
+              return const ShowLoading();
+            }
+          }),
     );
   }
 }

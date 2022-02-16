@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:volt_arena/database/user_local_data.dart';
-import '../../../../../database/auth_methods.dart';
+import 'package:provider/provider.dart';
+import 'package:volt_arena/provider/group_chat_provider.dart';
 import '../../../../../models/chat.dart';
+import '../../database/auth_methods.dart';
 import '../../widget/messages/chat_dashboard_tile.dart';
 
 class PersonalChatDashboard extends StatelessWidget {
@@ -40,15 +41,25 @@ class PersonalChatDashboard extends StatelessWidget {
                         ),
                       ),
                     )
-                  : ListView.separated(
-                      itemCount: _chat.length,
-                      separatorBuilder: (_, __) => const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Divider(height: 1),
+                  : Consumer<GroupChatProvider>(
+                      builder: (_, persons, __) => ListView.separated(
+                        itemCount: _chat.length,
+                        separatorBuilder: (_, __) => const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Divider(height: 1),
+                        ),
+                        itemBuilder: (_, int index) {
+                          return ChatDashboardTile(
+                            chat: _chat[index],
+                            user: persons.userInfo(
+                              uid: _chat[index].persons[_chat[index]
+                                  .persons
+                                  .indexWhere((String element) =>
+                                      element != AuthMethod.uid)],
+                            ),
+                          );
+                        },
                       ),
-                      itemBuilder: (_, int index) {
-                        return ChatDashboardTile(chat: _chat[index]);
-                      },
                     );
             } else {
               return const Text('Error Text');

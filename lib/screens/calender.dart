@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:uuid/uuid.dart';
+
 import 'package:volt_arena/consts/collections.dart';
 import 'package:volt_arena/consts/colors.dart';
 import 'package:volt_arena/consts/theme_data.dart';
@@ -18,8 +19,13 @@ class CalenderScreen extends StatefulWidget {
   final String? title;
   final bool? mySessions;
   final int? price;
-  CalenderScreen(
-      {this.gameTime, this.title, this.price, this.mySessions = false});
+  const CalenderScreen({
+    Key? key,
+    this.gameTime,
+    this.title,
+    this.mySessions,
+    this.price,
+  }) : super(key: key);
   @override
   _CalenderScreenState createState() => _CalenderScreenState();
 }

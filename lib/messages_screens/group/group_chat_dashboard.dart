@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:volt_arena/provider/group_chat_provider.dart';
 import 'package:volt_arena/widget/tools/circular_profile_image.dart';
 import '../../../../../database/auth_methods.dart';
 import '../../../../../models/group_chat.dart';
@@ -60,21 +62,26 @@ class GroupChatDashboardTile extends StatelessWidget {
     required this.group,
     Key? key,
   }) : super(key: key);
-
   final GroupChat group;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
+        Provider.of<GroupChatProvider>(context, listen: false).groupChat =
+            group;
         Navigator.of(context).push(
           MaterialPageRoute<GroupChatScreen>(
-            builder: (_) => GroupChatScreen(group: group),
+            builder: (_) => const GroupChatScreen(),
           ),
         );
       },
       dense: true,
-      leading: CircularProfileImage(imageURL: group.imageURL ?? ''),
+      minLeadingWidth: 10,
+      leading: CircularProfileImage(
+        imageURL: group.imageURL ?? '',
+        radious: 24,
+      ),
       title: Text(
         group.name ?? 'Issue',
         style: const TextStyle(fontWeight: FontWeight.bold),

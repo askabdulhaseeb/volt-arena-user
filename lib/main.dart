@@ -8,8 +8,11 @@ import 'package:volt_arena/bottom_bar.dart';
 import 'package:volt_arena/cart/cart.dart';
 import 'package:volt_arena/database/user_local_data.dart';
 import 'package:volt_arena/messages_screens/message_page.dart';
+import 'package:volt_arena/models/group_chat.dart';
+import 'package:volt_arena/models/group_chat_participant.dart';
 import 'package:volt_arena/provider/bottom_navigation_bar_provider.dart';
 import 'package:volt_arena/provider/dark_theme_provider.dart';
+import 'package:volt_arena/provider/group_chat_provider.dart';
 import 'package:volt_arena/provider/message_page_provider.dart';
 import 'package:volt_arena/provider/users_provider.dart';
 import 'package:volt_arena/screens/landing_page.dart';
@@ -64,10 +67,11 @@ Future<void> main() async {
     badge: true,
     sound: true,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -124,6 +128,9 @@ class _MyAppState extends State<MyApp> {
               ),
               ChangeNotifierProvider<CartProvider>.value(value: CartProvider()),
               ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
+              ChangeNotifierProvider<GroupChatProvider>.value(
+                value: GroupChatProvider(),
+              ),
               ChangeNotifierProvider<FavsProvider>.value(value: FavsProvider()),
               ChangeNotifierProvider<OrdersProvider>.value(
                   value: OrdersProvider()),
@@ -147,13 +154,13 @@ class _MyAppState extends State<MyApp> {
                   secondary: Colors.red,
                 ),
               ),
-              home: UserState(),
+              home: const UserState(),
               routes: {
                 // '/': (ctx) => LandingPage(),
                 // WebhookPaymentScreen.routeName: (ctx) =>
                 //     WebhookPaymentScreen(),
                 MyBookingsScreen.routeName: (ctx) => MyBookingsScreen(),
-                CalenderScreen.routeName: (ctx) => CalenderScreen(),
+                CalenderScreen.routeName: (ctx) => const CalenderScreen(),
                 ServicesScreen.routeName: (ctx) => const ServicesScreen(),
                 WishlistScreen.routeName: (ctx) => WishlistScreen(),
                 MainScreens.routeName: (ctx) => const MainScreens(),
@@ -161,7 +168,7 @@ class _MyAppState extends State<MyApp> {
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 SignupScreen.routeName: (ctx) => const SignupScreen(),
                 BottomBarScreen.routeName: (ctx) => const BottomBarScreen(),
-                UploadProductForm.routeName: (ctx) => UploadProductForm(),
+                UploadProductForm.routeName: (ctx) => const UploadProductForm(),
                 ForgetPassword.routeName: (ctx) => ForgetPassword(),
                 LandingScreen.routeName: (ctx) => const LandingScreen(),
                 OrderScreen.routeName: (ctx) => OrderScreen(),
