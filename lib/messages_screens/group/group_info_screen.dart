@@ -46,13 +46,16 @@ class GroupInfoScreen extends StatelessWidget {
             ),
             _TabableTextBox(
               title: _provider.groupChat?.description ?? '-',
+              textStyle: const TextStyle(color: Colors.grey),
               onTap: () {},
               placeholder: 'Add a decription here',
             ),
-            const SizedBox(width: 16),
-            Text(
-              'Total Members: ${_provider.groupChat?.participants?.length.toString() ?? "0"}',
-              style: const TextStyle(color: Colors.grey),
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Text(
+                'Total Members: ${_provider.groupChat?.participants?.length.toString() ?? "0"}',
+                style: const TextStyle(color: Colors.grey),
+              ),
             ),
             ConstrainedBox(
               constraints: const BoxConstraints.tightFor(height: 300),
@@ -110,11 +113,13 @@ class _TabableTextBox extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.placeholder,
+    this.textStyle,
     Key? key,
   }) : super(key: key);
   final String title;
   final VoidCallback onTap;
   final String? placeholder;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +138,7 @@ class _TabableTextBox extends StatelessWidget {
             )
           : Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: textStyle ?? const TextStyle(fontWeight: FontWeight.bold),
             ),
     );
   }

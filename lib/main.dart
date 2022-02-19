@@ -141,16 +141,16 @@ class _MyAppState extends State<MyApp> {
               title: 'Volt Arena',
               theme: ThemeData(
                 scaffoldBackgroundColor: Colors.black,
-                primaryColor: Colors.orange,
+                primaryColor: Colors.amber,
                 accentColor: Colors.black,
                 brightness: Brightness.dark,
-                dividerTheme: const DividerThemeData(
-                    color: Colors.orange, thickness: 0.5),
+                dividerTheme:
+                    const DividerThemeData(color: Colors.grey, thickness: 0.5),
                 textTheme: const TextTheme(
                         bodyText1: TextStyle(color: Colors.white))
                     .apply(bodyColor: Colors.white, displayColor: Colors.white),
                 colorScheme: const ColorScheme.dark(
-                  primary: Colors.orange,
+                  primary: Colors.amber,
                   secondary: Colors.red,
                 ),
               ),

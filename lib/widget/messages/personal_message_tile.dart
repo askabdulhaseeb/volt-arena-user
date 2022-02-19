@@ -55,7 +55,7 @@ class PersonalMessageTile extends StatelessWidget {
                   message.message,
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    color: (isMe) ? Colors.white : Colors.black,
+                    color: (isMe) ? Colors.black : Colors.black,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -65,7 +65,7 @@ class PersonalMessageTile extends StatelessWidget {
                     Text(
                       Utilities.timeInDigits(message.timestamp),
                       style: TextStyle(
-                        color: (isMe) ? Colors.white70 : Colors.black54,
+                        color: (isMe) ? Colors.black38 : Colors.black54,
                         fontSize: 12,
                       ),
                     ),
