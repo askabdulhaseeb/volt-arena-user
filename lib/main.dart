@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> {
                     .apply(bodyColor: Colors.white, displayColor: Colors.white),
                 colorScheme: const ColorScheme.dark(
                   primary: Colors.amber,
-                  secondary: Colors.red,
+                  secondary: Colors.yellow,
                 ),
               ),
               home: const UserState(),

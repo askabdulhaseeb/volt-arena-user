@@ -212,7 +212,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Text('Edit'),
+                    child: const Text(
+                      'Edit',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ),

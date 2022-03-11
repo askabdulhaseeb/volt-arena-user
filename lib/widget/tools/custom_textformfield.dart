@@ -57,6 +57,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
         controller: widget._controller,
         readOnly: widget.readOnly,
         keyboardType: widget.keyboardType,
+        textInputAction: TextInputAction.next,
         autofocus: widget.autoFocus,
         minLines: widget.minLines,
         maxLines: (widget._controller.text.isEmpty) ? 1 : widget.maxLines,

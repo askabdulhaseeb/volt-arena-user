@@ -60,7 +60,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         onPressed: () {
           Navigator.of(context).pushNamed(MessageScreen.routeName);
         },
-        child: const Icon(Icons.chat, color: Colors.white),
+        child: const Icon(Icons.chat, color: Colors.black),
       ),
     );
   }

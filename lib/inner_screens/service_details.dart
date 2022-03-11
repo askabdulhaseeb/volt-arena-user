@@ -21,15 +21,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
-  static const routeName = '/ServiceDetailsScreen';
-
+  const ServiceDetailsScreen({Key? key}) : super(key: key);
+  static const String routeName = '/ServiceDetailsScreen';
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
 }
 
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
-  GlobalKey previewContainer = new GlobalKey();
-  TextEditingController _reviewController = TextEditingController();
+  GlobalKey previewContainer = GlobalKey();
+  final TextEditingController _reviewController = TextEditingController();
   bool isUploading = false;
   List allReviews = [];
 
@@ -47,7 +47,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
       body: Stack(
         children: <Widget>[
           Container(
-            foregroundDecoration: BoxDecoration(color: Colors.black12),
+            foregroundDecoration: const BoxDecoration(color: Colors.black12),
             height: MediaQuery.of(context).size.height * 0.55,
             width: double.infinity,
             child: CachedNetworkImage(
@@ -61,49 +61,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(height: MediaQuery.of(context).size.height * 0.55),
-                // Padding(
-                //   padding: const EdgeInsets.all(16.0),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //     children: <Widget>[
-                //       Material(
-                //         color: Colors.transparent,
-                //         child: InkWell(
-                //           splashColor: Colors.purple.shade200,
-                //           onTap: () {},
-                //           borderRadius: BorderRadius.circular(30),
-                //           child: Padding(
-                //             padding: const EdgeInsets.all(8.0),
-                //             child: Icon(
-                //               Icons.save,
-                //               size: 23,
-                //               color: Colors.white,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       Material(
-                //         color: Colors.transparent,
-                //         child: InkWell(
-                //           splashColor: Colors.purple.shade200,
-                //           onTap: () {},
-                //           borderRadius: BorderRadius.circular(30),
-                //           child: Padding(
-                //             padding: const EdgeInsets.all(8.0),
-                //             child: Icon(
-                //               Icons.share,
-                //               size: 23,
-                //               color: Colors.white,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-
                 Container(
-                  //padding: const EdgeInsets.all(16.0),
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,19 +71,17 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               child: Text(
                                 prodAttr.title!,
                                 maxLines: 2,
-                                style: TextStyle(
-                                  // color: Theme.of(context).textSelectionColor,
-                                  fontSize: 28.0,
-                                  fontWeight: FontWeight.w600,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 8,
                             ),
                             Text(
@@ -141,8 +97,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                       ),
 
                       const SizedBox(height: 3.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Divider(
                           thickness: 1,
                           color: Colors.grey,
@@ -157,15 +113,15 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         ),
                       ),
                       const SizedBox(height: 5.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Divider(
                           thickness: 1,
                           color: Colors.grey,
                           height: 1,
                         ),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       _details('Game Time: ', '${prodAttr.gameTime} min'),
                       _details('Pallets Available: ', '${prodAttr.pallets} '),
                       _details(
@@ -175,8 +131,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                           ? Container()
                           : _details(
                               'Group Members: ', '${prodAttr.groupMembers} '),
-                      SizedBox(height: 15),
-                      Divider(
+                      const SizedBox(height: 15),
+                      const Divider(
                         thickness: 1,
                         color: Colors.grey,
                         height: 1,
@@ -234,15 +190,15 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                 // const SizedBox(height: 15.0),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  child: Text(
+                  child: const Text(
                     'Suggested services:',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom: 30),
+                  margin: const EdgeInsets.only(bottom: 30),
                   width: double.infinity,
                   height: 120,
                   child: ListView.builder(
@@ -268,9 +224,10 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: const Text(
                 "DETAIL",
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
+                style: TextStyle(
+                    fontSize: 16.0, fontWeight: FontWeight.normal),
               ),
               actions: <Widget>[
                 Consumer<FavsProvider>(
@@ -281,7 +238,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     position: BadgePosition.topEnd(top: 5, end: 7),
                     badgeContent: Text(
                       favs.getFavsItems.length.toString(),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     child: IconButton(
                       icon: Icon(
@@ -303,7 +260,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     position: BadgePosition.topEnd(top: 5, end: 7),
                     badgeContent: Text(
                       cart.getCartItems.length.toString(),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     child: IconButton(
                       icon: Icon(
@@ -326,11 +283,12 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
               children: [
                 Expanded(
                   flex: 3,
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      shape: RoundedRectangleBorder(side: BorderSide.none),
+                      shape:
+                          const RoundedRectangleBorder(side: BorderSide.none),
                       color: Theme.of(context).primaryColor,
                       onPressed:
                           cartProvider.getCartItems.containsKey(productId)
@@ -346,18 +304,20 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         cartProvider.getCartItems.containsKey(productId)
                             ? 'In cart'
                             : 'Add to Cart'.toUpperCase(),
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 2,
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      shape: RoundedRectangleBorder(side: BorderSide.none),
+                      shape:
+                          const RoundedRectangleBorder(side: BorderSide.none),
                       color: Theme.of(context).backgroundColor,
                       onPressed: () {
                         Navigator.of(context)
@@ -375,11 +335,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         children: [
                           Text(
                             'Book now'.toUpperCase(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Icon(
@@ -432,8 +392,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text(
             "Reviews",
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
@@ -455,7 +415,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
         ),
       ],
@@ -507,8 +467,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
           trailing: IconButton(
             onPressed: () => addReview(productItems: productItems),
             icon: isUploading
-                ? Text('')
-                : Icon(
+                ? const Text('')
+                : const Icon(
                     Icons.send,
                     size: 40.0,
                     // color: Colors.black,
@@ -535,7 +495,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
             allReviews.add(ProductCommentMessages.fromDocument(doc));
           });
           return allReviews.isEmpty
-              ? Center(child: Text("Currently No Review"))
+              ? const Center(child: Text("Currently No Review"))
               : Center(
                   child: Column(
                     children: [
@@ -552,7 +512,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         isPostComment: false,
                                         isProductComment: true,
                                       ))),
-                          child: Text(
+                          child: const Text(
                             'View All Reviews',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -573,11 +533,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
       allAdmins.add(AppUserModel.fromDocument(e));
     });
 
-    String commentId = Uuid().v4();
+    String commentId = const Uuid().v4();
     setState(() {
       isUploading = true;
     });
-    if (_reviewController.text.trim().length > 0) {
+    if (_reviewController.text.trim().isNotEmpty) {
       await commentsRef
           .doc(productItems!.productId)
           .collection("comments")
@@ -634,13 +594,13 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
             ),
           ),
           Text(
             info,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w400,
               color: Colors.grey,
             ),
