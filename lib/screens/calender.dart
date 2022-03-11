@@ -32,12 +32,12 @@ class CalenderScreen extends StatefulWidget {
 
 class _CalenderScreenState extends State<CalenderScreen>
     with AutomaticKeepAliveClientMixin<CalenderScreen> {
-  CalendarController _controller = CalendarController();
+  final CalendarController _controller = CalendarController();
   List<Meeting> meetingsList = [];
   TimeOfDay? startingTime;
   TimeOfDay? endingTime;
   DateTime dateTime = DateTime.now();
-  TextEditingController _titleController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
   bool _isLoading = false;
   @override
   void initState() {
