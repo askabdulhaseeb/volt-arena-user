@@ -226,8 +226,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
               centerTitle: true,
               title: const Text(
                 "DETAIL",
-                style: TextStyle(
-                    fontSize: 16.0, fontWeight: FontWeight.normal),
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
               ),
               actions: <Widget>[
                 Consumer<FavsProvider>(
@@ -324,6 +323,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                             .push(MaterialPageRoute(
                                 builder: (context) => CalenderScreen(
                                       price: int.parse(prodAttr.price!),
+                                      mySessions: false,
                                       gameTime: int.parse(
                                         prodAttr.gameTime!,
                                       ),
