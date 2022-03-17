@@ -19,6 +19,7 @@ class _LandingScreenState extends State<LandingScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -94,6 +95,7 @@ class _LandingScreenState extends State<LandingScreen> {
         child: const Text(
           'Sign in with Google',
           style: TextStyle(
+            color: Colors.black,
             letterSpacing: 1,
             fontSize: 20,
           ),
@@ -168,7 +170,7 @@ class _LandingScreenState extends State<LandingScreen> {
         child: const Text(
           'Login',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             letterSpacing: 1,
             fontSize: 20,
           ),

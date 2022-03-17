@@ -24,7 +24,7 @@ class UserState extends StatelessWidget {
               print(currentUser);
 
               print('The user is already logged in');
-              return MainScreens();
+              return const MainScreens();
             } else {
               print('The user didn\'t login yet');
               return

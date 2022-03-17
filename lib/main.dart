@@ -140,18 +140,28 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               title: 'Volt Arena',
               theme: ThemeData(
-                scaffoldBackgroundColor: Colors.black,
-                primaryColor: Colors.amber,
-                accentColor: Colors.black,
-                brightness: Brightness.dark,
-                dividerTheme:
-                    const DividerThemeData(color: Colors.grey, thickness: 0.5),
+                iconTheme: const IconThemeData(color: Colors.black),
+                appBarTheme: const AppBarTheme(
+                  iconTheme: IconThemeData(color: Colors.black),
+                ),
+                scaffoldBackgroundColor: Colors.white,
+                primaryColor: Colors.black,
+                brightness: Brightness.light,
+                dividerTheme: const DividerThemeData(
+                  color: Colors.grey,
+                  thickness: 0.5,
+                ),
                 textTheme: const TextTheme(
-                        bodyText1: TextStyle(color: Colors.white))
-                    .apply(bodyColor: Colors.white, displayColor: Colors.white),
-                colorScheme: const ColorScheme.dark(
-                  primary: Colors.amber,
-                  secondary: Colors.yellow,
+                  bodyText1: TextStyle(
+                    color: Colors.white,
+                  ),
+                ).apply(
+                  bodyColor: Colors.white,
+                  displayColor: Colors.white,
+                ),
+                colorScheme: const ColorScheme.light(
+                  primary: Colors.black,
+                  secondary: Colors.grey,
                 ),
               ),
               home: const UserState(),
@@ -164,7 +174,8 @@ class _MyAppState extends State<MyApp> {
                 ServicesScreen.routeName: (ctx) => const ServicesScreen(),
                 WishlistScreen.routeName: (ctx) => WishlistScreen(),
                 MainScreens.routeName: (ctx) => const MainScreens(),
-                ServiceDetailsScreen.routeName: (ctx) => ServiceDetailsScreen(),
+                ServiceDetailsScreen.routeName: (ctx) =>
+                    const ServiceDetailsScreen(),
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 SignupScreen.routeName: (ctx) => const SignupScreen(),
                 BottomBarScreen.routeName: (ctx) => const BottomBarScreen(),
