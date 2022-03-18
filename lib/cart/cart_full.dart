@@ -33,7 +33,7 @@ class _CartFullState extends State<CartFull> {
           height: 135,
           margin: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: Colors.white10,
+            color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(Utilities.borderRadius),
           ),
           child: Row(
@@ -43,7 +43,7 @@ class _CartFullState extends State<CartFull> {
                 width: 100,
                 height: double.infinity,
                 child: CachedNetworkImage(
-                 imageUrl: cartAttr.imageUrl!,
+                  imageUrl: cartAttr.imageUrl!,
                   fit: BoxFit.cover,
                 ),
               ),

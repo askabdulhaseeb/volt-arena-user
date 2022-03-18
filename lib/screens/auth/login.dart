@@ -97,16 +97,16 @@ class _LoginScreenState extends State<LoginScreen> {
   Row _loginWord(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
-      children: const <Widget>[
+      children: <Widget>[
         Text(
           'Login',
           style: TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(vertical: 4),
           child: Icon(
             Icons.fiber_manual_record,

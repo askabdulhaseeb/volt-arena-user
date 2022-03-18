@@ -1,4 +1,3 @@
-import 'package:volt_arena/consts/my_icons.dart';
 import 'package:volt_arena/provider/favs_provider.dart';
 import 'package:volt_arena/services/global_method.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,8 @@ import 'wishlist_full.dart';
 
 class WishlistScreen extends StatelessWidget {
   static const routeName = '/WishlistScreen';
+
+  const WishlistScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
@@ -16,7 +17,7 @@ class WishlistScreen extends StatelessWidget {
     return favsProvider.getFavsItems.isEmpty
         ? Scaffold(
             appBar: AppBar(
-              title: Text('Wish List'),
+              title: const Text('Wish List'),
               centerTitle: true,
               elevation: 0,
               backgroundColor: Colors.transparent,
@@ -35,7 +36,7 @@ class WishlistScreen extends StatelessWidget {
                         context,);
                     // cartProvider.clearCart();
                   },
-                  child: Text('Clear List'),
+                  child: const Text('Clear List'),
                 ),
                 const SizedBox(width: 16),
               ],

@@ -27,9 +27,9 @@ class _WishlistFullState extends State<WishlistFull> {
             borderRadius: BorderRadius.circular(15),
             child: Container(
               width: double.infinity,
-              margin: EdgeInsets.only(top: 2.0, bottom: 2.0),
+              margin: const EdgeInsets.only(top: 2.0, bottom: 2.0),
               child: Material(
-                color: Colors.white10,
+                color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(5.0),
                 elevation: 3.0,
                 child: InkWell(
@@ -43,13 +43,12 @@ class _WishlistFullState extends State<WishlistFull> {
                         SizedBox(
                           width: 60,
                           height: 60,
-                          child:  CachedNetworkImage(
-                 imageUrl: 
-                            favsAttr.imageUrl!,
+                          child: CachedNetworkImage(
+                            imageUrl: favsAttr.imageUrl!,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +58,7 @@ class _WishlistFullState extends State<WishlistFull> {
                                 favsAttr.title!,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -69,7 +68,7 @@ class _WishlistFullState extends State<WishlistFull> {
                                 "₦ ${favsAttr.price}",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18.0,
                                 ),
@@ -102,9 +101,9 @@ class _WishlistFullState extends State<WishlistFull> {
         child: MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
-            padding: EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(0.0),
             color: ColorsConsts.favColor,
-            child: Icon(
+            child: const Icon(
               Icons.delete,
               color: Colors.white,
               size: 20,

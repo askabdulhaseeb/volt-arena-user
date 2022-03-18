@@ -51,7 +51,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text('Services'),
+          title: const Text(
+            'Services',
+            style: TextStyle(color: Colors.black),
+          ),
           centerTitle: true,
           // leading: IconButton(
           //   icon: Icon(Icons.dehaze_outlined),

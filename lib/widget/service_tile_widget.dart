@@ -35,7 +35,7 @@ class ServicesTileWidget extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute<ServiceDetailsScreen>(
-              builder: (BuildContext context) => ServiceDetailsScreen(),
+              builder: (BuildContext context) => const ServiceDetailsScreen(),
             ),
           );
         },
@@ -43,7 +43,7 @@ class ServicesTileWidget extends StatelessWidget {
           height: 80,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white10,
+            color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(Utilities.padding),
           ),
           child: Row(
@@ -56,11 +56,10 @@ class ServicesTileWidget extends StatelessWidget {
                 child: SizedBox(
                   width: 80,
                   height: double.infinity,
-                  child:  CachedNetworkImage(
-                 imageUrl: 
-                    _product.imageUrl!,
+                  child: CachedNetworkImage(
+                    imageUrl: _product.imageUrl!,
                     fit: BoxFit.cover,
-                    errorWidget:(context, url, error) =>  
+                    errorWidget: (context, url, error) =>
                         Image.asset(CustomImages.icon, fit: BoxFit.cover),
                   ),
                 ),

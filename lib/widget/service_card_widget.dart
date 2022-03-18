@@ -41,10 +41,15 @@ class ServiceCardWidget extends StatelessWidget {
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 2 / 1,
-                child: (product.imageUrl == null || product.imageUrl!.isEmpty)
-                    ? Image.asset(CustomImages.icon, fit: BoxFit.contain)
-                    : CachedNetworkImage(
-                        imageUrl: product.imageUrl!, fit: BoxFit.contain),
+                child: Container(
+                  color: Colors.grey.shade200,
+                  child: (product.imageUrl == null || product.imageUrl!.isEmpty)
+                      ? Image.asset(CustomImages.icon, fit: BoxFit.contain)
+                      : CachedNetworkImage(
+                          imageUrl: product.imageUrl!,
+                          fit: BoxFit.contain,
+                        ),
+                ),
               ),
               Badge(
                 alignment: Alignment.center,

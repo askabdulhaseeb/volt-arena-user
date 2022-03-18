@@ -91,10 +91,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
+  final Color _primary = const Color(0xFFD19316);
   @override
   Widget build(BuildContext context) {
-    bool isDarkTheme = true;
+    bool isDarkTheme = false;
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
@@ -145,22 +145,22 @@ class _MyAppState extends State<MyApp> {
                   iconTheme: IconThemeData(color: Colors.black),
                 ),
                 scaffoldBackgroundColor: Colors.white,
-                primaryColor: Colors.black,
+                primaryColor: _primary,
                 brightness: Brightness.light,
                 dividerTheme: const DividerThemeData(
                   color: Colors.grey,
                   thickness: 0.5,
                 ),
-                textTheme: const TextTheme(
-                  bodyText1: TextStyle(
-                    color: Colors.white,
-                  ),
-                ).apply(
-                  bodyColor: Colors.white,
-                  displayColor: Colors.white,
-                ),
-                colorScheme: const ColorScheme.light(
-                  primary: Colors.black,
+                // textTheme: const TextTheme(
+                //   bodyText1: TextStyle(
+                //     color: Colors.black,
+                //   ),
+                // ).apply(
+                //   bodyColor: Colors.black,
+                //   displayColor: Colors.black,
+                // ),
+                colorScheme: ColorScheme.light(
+                  primary: _primary,
                   secondary: Colors.grey,
                 ),
               ),
