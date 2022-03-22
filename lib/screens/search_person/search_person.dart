@@ -15,6 +15,8 @@ class SearchPerson extends StatelessWidget {
     UserProvider _provider = Provider.of<UserProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: TextFormField(
           onChanged: (String value) => _provider.onSearch(value),
           decoration: InputDecoration(

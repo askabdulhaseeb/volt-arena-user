@@ -13,7 +13,7 @@ class CustomTextButton extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: Utilities.padding / 2),
         padding: EdgeInsets.symmetric(
-          vertical: Utilities.padding / 2,
+          vertical: Utilities.padding / 1.5,
           horizontal: Utilities.padding * 3,
         ),
         decoration: BoxDecoration(
@@ -22,8 +22,8 @@ class CustomTextButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: Theme.of(context).scaffoldBackgroundColor,
             letterSpacing: 1,
             fontSize: 20,
           ),

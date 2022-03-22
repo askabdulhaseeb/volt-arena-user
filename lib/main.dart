@@ -91,10 +91,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
+  // final Color _primary = const Color(0xFFD19316);
+  final Color _primary = Colors.grey;
   @override
   Widget build(BuildContext context) {
-    bool isDarkTheme = true;
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
@@ -140,18 +140,28 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               title: 'Volt Arena',
               theme: ThemeData(
-                scaffoldBackgroundColor: Colors.black,
-                primaryColor: Colors.amber,
-                accentColor: Colors.black,
-                brightness: Brightness.dark,
-                dividerTheme:
-                    const DividerThemeData(color: Colors.grey, thickness: 0.5),
-                textTheme: const TextTheme(
-                        bodyText1: TextStyle(color: Colors.white))
-                    .apply(bodyColor: Colors.white, displayColor: Colors.white),
-                colorScheme: const ColorScheme.dark(
-                  primary: Colors.amber,
-                  secondary: Colors.yellow,
+                iconTheme: const IconThemeData(color: Colors.black),
+                appBarTheme: const AppBarTheme(
+                  iconTheme: IconThemeData(color: Colors.black),
+                ),
+                scaffoldBackgroundColor: Colors.white,
+                primaryColor: _primary,
+                brightness: Brightness.light,
+                dividerTheme: const DividerThemeData(
+                  color: Colors.grey,
+                  thickness: 0.5,
+                ),
+                // textTheme: const TextTheme(
+                //   bodyText1: TextStyle(
+                //     color: Colors.black,
+                //   ),
+                // ).apply(
+                //   bodyColor: Colors.black,
+                //   displayColor: Colors.black,
+                // ),
+                colorScheme: ColorScheme.light(
+                  primary: _primary,
+                  secondary: Colors.grey,
                 ),
               ),
               home: const UserState(),
@@ -164,7 +174,8 @@ class _MyAppState extends State<MyApp> {
                 ServicesScreen.routeName: (ctx) => const ServicesScreen(),
                 WishlistScreen.routeName: (ctx) => WishlistScreen(),
                 MainScreens.routeName: (ctx) => const MainScreens(),
-                ServiceDetailsScreen.routeName: (ctx) => ServiceDetailsScreen(),
+                ServiceDetailsScreen.routeName: (ctx) =>
+                    const ServiceDetailsScreen(),
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 SignupScreen.routeName: (ctx) => const SignupScreen(),
                 BottomBarScreen.routeName: (ctx) => const BottomBarScreen(),

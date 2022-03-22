@@ -142,7 +142,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
       title: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute<GroupInfoScreen>(
-            builder: (_) =>const GroupInfoScreen(),
+            builder: (_) => const GroupInfoScreen(),
           ));
         },
         child: Row(
@@ -167,7 +167,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                   ),
                   const Text(
                     'Tab here for group info',
-                    style: TextStyle(fontSize: 11, color: Colors.grey),
+                    style: TextStyle(fontSize: 11),
                   ),
                 ],
               ),

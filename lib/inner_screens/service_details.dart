@@ -317,7 +317,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape:
                           const RoundedRectangleBorder(side: BorderSide.none),
-                      color: Theme.of(context).backgroundColor,
+                      color: Colors.grey.shade200,
                       onPressed: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(

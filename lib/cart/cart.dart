@@ -16,6 +16,8 @@ class MyBookingsScreen extends StatefulWidget {
   //To be known 1) the amount must be an integer 2) the amount must not be double 3) the minimum amount should be less than 0.5 $
   static const routeName = '/CartScreen';
 
+  const MyBookingsScreen({Key? key}) : super(key: key);
+
   @override
   _MyBookingsScreenState createState() => _MyBookingsScreenState();
 }
@@ -36,7 +38,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
         : Scaffold(
             bottomSheet: checkoutSection(context, cartProvider.totalAmount),
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              // backgroundColor: Colors.transparent,
               elevation: 0,
               title: Text('Cart (${cartProvider.getCartItems.length})'),
               actions: [
