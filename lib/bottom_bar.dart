@@ -82,7 +82,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     );
   }
 
-  Widget userTitle({required String title, Color color: Colors.yellow}) {
+  Widget userTitle({required String title, Color color = Colors.grey}) {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Text(

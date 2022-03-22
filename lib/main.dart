@@ -91,10 +91,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  final Color _primary = const Color(0xFFD19316);
+  // final Color _primary = const Color(0xFFD19316);
+  final Color _primary = Colors.grey;
   @override
   Widget build(BuildContext context) {
-    bool isDarkTheme = false;
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {

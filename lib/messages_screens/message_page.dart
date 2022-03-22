@@ -20,11 +20,10 @@ class MessageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: Text(
+        title: const Text(
           'Messages',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).primaryColor,
           ),
         ),
       ),
@@ -105,9 +104,7 @@ class TabBarIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color? _color = isSelected
-        ? Theme.of(context).primaryColor
-        : Theme.of(context).iconTheme.color;
+    final Color? _color = isSelected ? Colors.black : Colors.grey;
     return GestureDetector(
       onTap: onTab,
       child: Column(

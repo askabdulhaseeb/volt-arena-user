@@ -173,7 +173,7 @@ class _PersonalChatScreenState extends State<PersonalChatScreen> {
                   ),
                   const Text(
                     'Tap here to open profile',
-                    style: TextStyle(fontSize: 11, color: Colors.grey),
+                    style: TextStyle(fontSize: 11),
                   )
                 ],
               ),
